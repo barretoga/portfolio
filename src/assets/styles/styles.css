@@ -1,0 +1,13 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+  font-family: 'Motiva Sans';
+  src: url('/src/assets/fonts/MotivaSans.ttf') format('truetype')
+}
+
+* {
+  font-family: 'Motiva Sans', sans-serif !important;
+  font-weight: 1px;
+}

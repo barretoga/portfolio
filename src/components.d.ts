@@ -10,5 +10,6 @@ declare module 'vue' {
     Image: typeof import('./components/Image.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
+    Video: typeof import('./components/Video.vue')['default']
   }
 }

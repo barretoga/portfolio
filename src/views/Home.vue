@@ -12,10 +12,10 @@ const showCompleteDescription = ref(false)
       type="video/webm"
     />
     <div
-      class="flex flex-col bg-gradient-background rounded-lg w-full max-w-[976px] z-[4] relative"
+      class="flex flex-col bg-gradient-background rounded-lg max-w-[976px] w-full lg:w-[976px] z-[4] relative"
     >
-      <div class="grid grid-cols-4 py-8 px-6">
-        <div class="relative">
+      <div class="flex py-8 px-6">
+        <div class="relative w-full max-w-[200px]">
           <Image
             class="w-[164px] h-[164px] border-2 border-sky-300"
             src="/src/assets/images/gatinho.png"
@@ -27,7 +27,7 @@ const showCompleteDescription = ref(false)
             alt="Moldura do perfil"
           />
         </div>
-        <div class="col-span-2 -ml-9 pr-5 flex flex-col text-sm">
+        <div class="flex flex-col w-full max-w-[450px] pr-5 text-sm">
           <h1 class="text-2xl">barreto</h1>
           <div class="flex mb-5">
             <span
@@ -41,7 +41,7 @@ const showCompleteDescription = ref(false)
               alt="Bandeira do Brasil"
             />
             <span>
-              Bauru, Sao Paulo, Brazil
+              Bauru, São Paulo, Brazil
             </span>
           </div>
           <p
@@ -72,7 +72,7 @@ const showCompleteDescription = ref(false)
             {{ showCompleteDescription ? 'Ver menos informações' : 'Ver mais informações' }}
           </button>
         </div>
-        <div class="flex flex-col">
+        <div class="flex flex-col w-full max-w-[268px] col-span-2">
           <div class="flex items-center">
             <h1
               class="mr-2 text-xl"
@@ -85,7 +85,7 @@ const showCompleteDescription = ref(false)
               24
             </span>
           </div>
-          <div class="flex mt-4 bg-[rgba(0,0,0,0.3)] rounded p-3 py-2">
+          <div class="flex mt-4 bg-box-background rounded p-3 py-2">
             <Image
               class="w-[54px] h-[54px] mr-3"
               src="/src/assets/images/logo-vue.png"
@@ -100,6 +100,25 @@ const showCompleteDescription = ref(false)
               </span>
             </div>
           </div>
+        </div>
+      </div>
+      <div class="flex">
+        <div class="w-full max-w-[652px] ml-2">
+          Resumo
+        </div>
+        <div class="flex flex-col w-full max-w-[288px] bg-box-background p-3 ml-4">
+          <span class="text-xl text-[#57CDBE]">
+            Working
+          </span>
+          <div class="flex mt-10 items-end">
+            <span class="text-sm">
+              Tecnologias
+            </span>
+            <span class="text-slate-400 ml-3 -mb-1 text-2xl">
+              30
+            </span>
+          </div>
+          <Badges />
         </div>
       </div>
     </div>

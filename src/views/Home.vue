@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { ref } from 'vue';
+import { badgeItems } from '~/static/badges';
 
 const showCompleteDescription = ref(false)
 </script>
@@ -12,7 +13,7 @@ const showCompleteDescription = ref(false)
       type="video/webm"
     />
     <div
-      class="flex flex-col bg-gradient-background rounded-lg max-w-[976px] w-full lg:w-[976px] z-[4] relative"
+      class="flex flex-col bg-gradient-to-br from-gradient-background via-gradient-background to-gradient-showcase-header-left rounded-lg max-w-[976px] w-full lg:w-[976px] z-[4] relative"
     >
       <div class="flex py-8 px-6">
         <div class="relative w-full max-w-[200px]">
@@ -44,29 +45,25 @@ const showCompleteDescription = ref(false)
               Bauru, São Paulo, Brazil
             </span>
           </div>
-          <p
-            v-if="!showCompleteDescription"
-            class="text-gray-300"
-          >
-            Olá, me chamo Gabriel Barreto, sou um Desenvolvedor Front-end e atualmente atuo pela Labi9 Tecnologia da informação como Front-end Tech Lead...
-          </p>
           <div
-            v-else
+            :class="{
+              'max-h-[50px] overflow-hidden line-clamp-2': !showCompleteDescription,
+              'max-h-[500px] overflow-visible transition-all duration-500 ease-linear': showCompleteDescription,
+            }"
             class="text-gray-300"
-          >
-            <p>
-              Olá, me chamo Gabriel Barreto, sou um Desenvolvedor Front-end e atualmente atuo pela Labi9 Tecnologia da informação como Front-end Tech Lead.
-            </p>
+          >              
             <p
               class="mt-2"
             >
+              Olá, me chamo Gabriel Barreto, sou um Desenvolvedor Front-end e atualmente atuo pela Labi9 Tecnologia da informação como Front-end Tech Lead.
+              <br><br>
               Atuei em projetos que vão desde landing pages estáticas e backoffices a até aplicações WebApp que utilizam recursos como PWA e web sockets. Veja 
               um pouco mais sobre minha trajetória através deste portfólio 🙇‍♂️
             </p>
           </div>
           <button
             type="button"
-            class="hover:text-sky-300 mt-2 font-medium text-left"
+            class="hover:text-sky-300 mt-2 font-medium text-left transition-all duration-200 ease-linear"
             @click="showCompleteDescription = !showCompleteDescription"
           >
             {{ showCompleteDescription ? 'Ver menos informações' : 'Ver mais informações' }}
@@ -77,7 +74,7 @@ const showCompleteDescription = ref(false)
             <h1
               class="mr-2 text-xl"
             >
-              Nível
+              Idade
             </h1>
             <span
               class="border-yellow-300 border-2 p-[2px] px-[4px] rounded-full"
@@ -87,26 +84,45 @@ const showCompleteDescription = ref(false)
           </div>
           <div class="flex mt-4 bg-box-background rounded p-3 py-2">
             <Image
-              class="w-[54px] h-[54px] mr-3"
-              src="/src/assets/images/logo-vue.png"
+              class="w-[60px] h-[54px] object-cover p-1 rounded-lg"
+              src="/src/assets/images/vue-logo.png"
               alt="Logo Vue"
             />
-            <div class="flex flex-col text-xs justify-center">
+            <div class="flex flex-col ml-3 text-xs justify-center">
               <span>
                 Vue
               </span>
               <span>
-                undefined XP
+                Mid Level/Pleno XP
               </span>
             </div>
           </div>
         </div>
       </div>
       <div class="flex">
-        <div class="w-full max-w-[652px] ml-2">
-          Resumo
+        <div class="w-full max-w-[652px] px-3 ml-2">
+          <div class="bg-box-background rounded">
+            <div class="flex bg-gradient-to-r from-gradient-showcase-header-left to-color-showcase-header rounded-t-md px-3 pt-1">
+              <h2 class="text-lg mb-2 mr-2">
+                Formação
+              </h2>
+              <a
+                href="https://fatecjahu.edu.br/cursos/gestao-da-tecnologia-da-informacao/"
+                target="_blank"
+                class="flex items-center -mt-2 hover:text-sky-300 transition-all duration-150"
+              >
+                <Icon
+                  icon="akar-icons:link-out"
+                  width="1em"
+                />
+              </a>
+            </div>
+            <p class="text-sm p-5">
+              Sou formado pela Faculdade de Tecnologia de São Paulo - FATEC Jahú em Gestão da Tecnologia da Informação (02/2020 - 12/2023).
+            </p>
+          </div>
         </div>
-        <div class="flex flex-col w-full max-w-[288px] bg-box-background p-3 ml-4">
+        <div class="flex flex-col w-full max-w-[288px] bg-box-background rounded-md p-3 ml-4 mr-4">
           <span class="text-xl text-[#57CDBE]">
             Working
           </span>
@@ -118,7 +134,48 @@ const showCompleteDescription = ref(false)
               30
             </span>
           </div>
-          <Badges />
+          <!-- <Badges
+            :items="badgeItems"
+          /> -->
+          <Swiper
+            :items="badgeItems"
+            :loop="true"
+            :slides-per-view="4"
+            :autoplay="{
+              delay: 1000,
+              disableOnInteraction: false,
+            }"
+            class="h-[70px] w-full mt-2"
+          >
+            <template #default="{ item }">
+              <Image
+                :src="item.image_path"
+                :alt="item.name"
+                class="w-[54px] h-[54px] object-cover p-1 rounded-lg"
+              />
+            </template>
+          </Swiper>
+          <a
+          href="https://github.com/barretoga"
+            target="_blank"
+            class="text-sm mt-10 hover:text-slate-300/70 transition-all duration-200"
+          >
+            Github
+          </a>
+          <a
+            href="https://www.linkedin.com/in/gabrielbarretogasparelo/"
+            target="_blank"
+            class="text-sm mt-3 hover:text-slate-300/70 transition-all duration-200"
+          >
+            Linkedin
+          </a>
+          <a
+            href="mailto:gabrielbarretogasparelo@gmail.com.br?subject=Proposta de emprego&body=Olá Gabriel Barreto!"
+            target="_blank"
+            class="text-sm mt-3 hover:text-slate-300/70 transition-all duration-200"
+          >
+            E-mail
+          </a>
         </div>
       </div>
     </div>

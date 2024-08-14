@@ -9,6 +9,7 @@ export default {
         'gradient-background': 'rgba(37, 7, 61, 1)',
         'gradient-background-right': 'rgba(105, 2, 3, 1)',
         'gradient-background-left': 'rgba(26, 2, 37, 1)',
+        'box-background': 'rgba(0,0,0,0.3)',
         'color-showcase-header': 'rgba(168, 24, 73, 1)',
         'gradient-showcase-header-left': 'rgba(239, 21, 23, 1)',
         'btn-background': 'rgba(0, 0, 0, 0.2)',

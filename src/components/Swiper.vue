@@ -38,7 +38,7 @@ if (props.autoplay) {
 <template>
   <Swiper
     :slides-per-view
-    :loop="true"
+    :loop
     :items
     :breakpoints
     :autoplay

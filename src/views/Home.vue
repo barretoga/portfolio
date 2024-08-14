@@ -131,7 +131,7 @@ const showCompleteDescription = ref(false)
               Tecnologias
             </span>
             <span class="text-slate-400 ml-3 -mb-1 text-2xl">
-              30
+              {{ badgeItems.length }}
             </span>
           </div>
           <!-- <Badges

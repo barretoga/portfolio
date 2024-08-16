@@ -100,7 +100,7 @@ const showCompleteDescription = ref(false)
         </div>
       </div>
       <div class="flex">
-        <div class="w-full max-w-[652px] px-3 ml-2">
+        <div class="w-full max-w-[652px] px-3 ml-2 mb-4">
           <div class="bg-box-background rounded">
             <div class="flex bg-gradient-to-r from-gradient-showcase-header-left to-color-showcase-header rounded-t-md px-3 pt-1">
               <h2 class="text-lg mb-2 mr-2">
@@ -121,8 +121,45 @@ const showCompleteDescription = ref(false)
               Sou formado pela Faculdade de Tecnologia de São Paulo - FATEC Jahú em Gestão da Tecnologia da Informação (02/2020 - 12/2023).
             </p>
           </div>
+          <div class="bg-box-background rounded mt-5">
+            <div class="flex bg-gradient-to-r from-gradient-showcase-header-left to-color-showcase-header rounded-t-md px-3 pt-1">
+              <h2 class="text-lg mb-2 mr-2">
+                Projetos
+              </h2>
+              <a
+                href="https://github.com/barretoga?tab=repositories"
+                target="_blank"
+                class="flex items-center -mt-2 hover:text-sky-300 transition-all duration-150"
+              >
+                <Icon
+                  icon="akar-icons:link-out"
+                  width="1em"
+                />
+              </a>
+            </div>
+            <div class="grid grid-cols-5 gap-2 p-2">
+              <a
+                class="col-span-4 w-[486px] h-[284px] hover:border-gray-50 border border-transparent transition-all duration-200 overflow-hidden"
+                href="https://barretodev.vercel.app/"
+                target="_blank"
+              >
+                <Image
+                  class="w-[506px] h-[284px] hover:scale-110 transition-all duration-200 object-cover"
+                  src="/src/assets/images/blog.png"
+                  alt="Blog"
+                />
+              </a>
+              <div class="flex flex-col col-span-1">
+                <Image
+                  class="w-[100px] h-[56px]"
+                  src=""
+                  alt=""
+                />
+              </div>
+            </div>
+          </div>
         </div>
-        <div class="flex flex-col w-full max-w-[288px] bg-box-background rounded-md p-3 ml-4 mr-4">
+        <div class="flex flex-col w-full max-w-[288px] bg-box-background rounded-md p-3 ml-4 mr-4 mb-4">
           <span class="text-xl text-[#57CDBE]">
             Working
           </span>

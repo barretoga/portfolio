@@ -134,9 +134,6 @@ const showCompleteDescription = ref(false)
               {{ badgeItems.length }}
             </span>
           </div>
-          <!-- <Badges
-            :items="badgeItems"
-          /> -->
           <Swiper
             :items="badgeItems"
             :loop="true"

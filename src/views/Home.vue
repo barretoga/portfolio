@@ -9,7 +9,7 @@ const showCompleteDescription = ref(false)
   <div class="grid mx-auto justify-center items-start text-white bg-black w-full h-full">
     <Video
       class="absolute inset-0 w-full h-full object-cover z-0"
-      src="/src/assets/videos/wallpaper.webm"
+      src="wallpaper.webm"
       type="video/webm"
     />
     <div
@@ -19,12 +19,12 @@ const showCompleteDescription = ref(false)
         <div class="relative w-full max-w-[200px]">
           <Image
             class="w-[164px] h-[164px] border-2 border-sky-300"
-            src="/src/assets/images/gatinho.png"
+            src="gatinho.png"
             alt="Imagem de perfil"
           />
           <Image
             class="absolute -left-4 -top-4 w-[196px] h-[196px]"
-            src="/src/assets/images/moldura.png"
+            src="moldura.png"
             alt="Moldura do perfil"
           />
         </div>
@@ -38,7 +38,7 @@ const showCompleteDescription = ref(false)
             </span>
             <Image
               class="w-[16px] h-[11px] mt-1 mr-1"
-              src="/src/assets/images/br.png"
+              src="br.png"
               alt="Bandeira do Brasil"
             />
             <span>
@@ -85,7 +85,7 @@ const showCompleteDescription = ref(false)
           <div class="flex mt-4 bg-box-background rounded p-3 py-2">
             <Image
               class="w-[60px] h-[54px] object-cover p-1 rounded-lg"
-              src="/src/assets/images/vue-logo.png"
+              src="vue-logo.png"
               alt="Logo Vue"
             />
             <div class="flex flex-col ml-3 text-xs justify-center">
@@ -145,7 +145,7 @@ const showCompleteDescription = ref(false)
               >
                 <Image
                   class="w-[506px] h-[334px] hover:scale-110 transition-all duration-200 object-cover"
-                  src="/src/assets/images/blog.png"
+                  src="blog.png"
                   alt="Blog"
                 />
               </a>
@@ -157,7 +157,7 @@ const showCompleteDescription = ref(false)
                 >
                   <Image
                     class="w-[116px] h-[80px] hover:scale-110 transition-all duration-200 object-cover"
-                    src="/src/assets/images/commer.png"
+                    src="commer.png"
                     alt="Commer"
                   />
                   <div class="w-[116px] h-[80px] top-0 bg-yellow-700/70 absolute opacity-0 hover:opacity-100 transition-all duration-200">
@@ -178,7 +178,7 @@ const showCompleteDescription = ref(false)
                 >
                   <Image
                     class="w-[116px] h-[80px] hover:scale-110 transition-all duration-200 object-cover"
-                    src="/src/assets/images/commer.png"
+                    src="commer.png"
                     alt="Commer API"
                   />
                   <div class="absolute w-[116px] h-[80px] text-black/80 bg-gray-300/50 font-bold text-xl top-0">
@@ -206,7 +206,7 @@ const showCompleteDescription = ref(false)
                 >
                   <Image
                     class="w-[116px] h-[80px] hover:scale-110 transition-all duration-200 object-cover"
-                    src="/src/assets/images/nlw.png"
+                    src="nlw.png"
                     alt="NLW Planner"
                   />
                 </a>

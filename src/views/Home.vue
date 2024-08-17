@@ -139,22 +139,86 @@ const showCompleteDescription = ref(false)
             </div>
             <div class="grid grid-cols-5 gap-2 p-2">
               <a
-                class="col-span-4 w-[486px] h-[284px] hover:border-gray-50 border border-transparent transition-all duration-200 overflow-hidden"
+                class="col-span-4 w-[486px] h-[334px] hover:border-gray-50 border border-transparent transition-all duration-200 overflow-hidden"
                 href="https://barretodev.vercel.app/"
                 target="_blank"
               >
                 <Image
-                  class="w-[506px] h-[284px] hover:scale-110 transition-all duration-200 object-cover"
+                  class="w-[506px] h-[334px] hover:scale-110 transition-all duration-200 object-cover"
                   src="/src/assets/images/blog.png"
                   alt="Blog"
                 />
               </a>
-              <div class="flex flex-col col-span-1">
-                <Image
-                  class="w-[100px] h-[56px]"
-                  src=""
-                  alt=""
-                />
+              <div class="flex flex-col col-span-1 gap-y-1">
+                <a
+                  class="w-[116px] h-[80px] hover:border-gray-50 border border-transparent relative transition-all duration-200 overflow-hidden"
+                  href="https://commer-application.netlify.app/"
+                  target="_blank"
+                >
+                  <Image
+                    class="w-[116px] h-[80px] hover:scale-110 transition-all duration-200 object-cover"
+                    src="/src/assets/images/commer.png"
+                    alt="Commer"
+                  />
+                  <div class="w-[116px] h-[80px] top-0 bg-yellow-700/70 absolute opacity-0 hover:opacity-100 transition-all duration-200">
+                    <span class="text-xs text-center w-full pl-3 font-semibold">
+                      Work in progress
+                    </span>
+                    <Icon
+                      class="mx-auto"
+                      icon="noto:construction"
+                      width="3em"
+                    />
+                  </div>
+                </a>
+                <a
+                  class="w-[116px] h-[80px] hover:border-gray-50 border border-transparent relative transition-all duration-200 overflow-hidden"
+                  href="https://commer-application.netlify.app/"
+                  target="_blank"
+                >
+                  <Image
+                    class="w-[116px] h-[80px] hover:scale-110 transition-all duration-200 object-cover"
+                    src="/src/assets/images/commer.png"
+                    alt="Commer API"
+                  />
+                  <div class="absolute w-[116px] h-[80px] text-black/80 bg-gray-300/50 font-bold text-xl top-0">
+                    <Icon
+                      class="mx-auto mt-1"
+                      icon="tabler:database-cog"
+                      width="3em"
+                    />
+                  </div>
+                  <div class="w-[116px] h-[80px] top-0 bg-yellow-700/70 absolute opacity-0 hover:opacity-100 transition-all duration-200">
+                    <span class="text-xs text-center w-full pl-3 font-semibold">
+                      Work in progress
+                    </span>
+                    <Icon
+                      class="mx-auto"
+                      icon="noto:construction"
+                      width="3em"
+                    />
+                  </div>
+                </a>
+                <a
+                  class="w-[116px] h-[80px] hover:border-gray-50 border border-transparent relative transition-all duration-200 overflow-hidden"
+                  href="https://github.com/barretoga/nlw-2024-planner"
+                  target="_blank"
+                >
+                  <Image
+                    class="w-[116px] h-[80px] hover:scale-110 transition-all duration-200 object-cover"
+                    src="/src/assets/images/nlw.png"
+                    alt="NLW Planner"
+                  />
+                </a>
+                <a
+                  class="w-[116px] h-[80px] bg-[#222223] hover:border-gray-50 border border-transparent flex items-center transition-all duration-200 overflow-hidden"
+                  href="https://github.com/barretoga/nlw-2024-planner"
+                  target="_blank"
+                >
+                  <span class="mx-auto">
+                    +19
+                  </span>
+                </a>
               </div>
             </div>
           </div>

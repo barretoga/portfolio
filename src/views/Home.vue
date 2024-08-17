@@ -173,7 +173,7 @@ const showCompleteDescription = ref(false)
                 </a>
                 <a
                   class="w-[116px] h-[80px] hover:border-gray-50 border border-transparent relative transition-all duration-200 overflow-hidden"
-                  href="https://commer-application.netlify.app/"
+                  href="https://github.com/barretoga/commer-api"
                   target="_blank"
                 >
                   <Image

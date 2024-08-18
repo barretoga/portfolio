@@ -212,7 +212,7 @@ const showCompleteDescription = ref(false)
                 </a>
                 <a
                   class="w-[116px] h-[80px] bg-[#222223] hover:border-gray-50 border border-transparent flex items-center transition-all duration-200 overflow-hidden"
-                  href="https://github.com/barretoga/nlw-2024-planner"
+                  href="https://github.com/barretoga?tab=repositories"
                   target="_blank"
                 >
                   <span class="mx-auto">

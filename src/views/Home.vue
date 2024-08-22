@@ -28,7 +28,7 @@ function sendEmail() {
 <template>
   <div class="grid mx-auto justify-center items-start text-white bg-black w-full h-full">
     <Video
-      class="absolute inset-0 w-full h-full object-cover z-0"
+      class="absolute inset-0 w-full min-h-[120vh] object-cover z-0"
       src="wallpaper.webm"
       type="video/webm"
     />

@@ -1,8 +1,17 @@
 <script setup lang="ts">
-import { ref } from 'vue';
+import { computed, ref } from 'vue';
 import { badgeItems } from '~/static/badges';
+import { useUserStore } from '~/stores/user';
 
 const showCompleteDescription = ref(false)
+const userStore = useUserStore()
+const { execute: getUserRepositories, isLoading: isLoadingRepositories } = userStore.repositories()
+
+getUserRepositories()
+
+const repositories = computed(() => {
+  return userStore.$state.repositories
+})
 </script>
 
 <template>
@@ -15,7 +24,7 @@ const showCompleteDescription = ref(false)
     <div
       class="flex flex-col bg-gradient-to-br overflow-x-hidden from-gradient-background via-gradient-background to-gradient-showcase-header-left rounded-lg max-w-[976px] w-full lg:w-[976px] z-[4] relative"
     >
-      <div class="flex flex-col lg:flex-row items-center py-8 px-6">
+      <div class="flex flex-col lg:flex-row items-center lg:items-start py-8 px-6">
         <div class="relative w-full max-w-[200px]">
           <Image
             class="w-[164px] h-[164px] border-2 border-sky-300"
@@ -216,14 +225,14 @@ const showCompleteDescription = ref(false)
                   target="_blank"
                 >
                   <span class="mx-auto">
-                    +19
+                    +{{ repositories.length - 4 }}
                   </span>
                 </a>
               </div>
             </div>
           </div>
         </div>
-        <div class="flex flex-col w-full max-w-[85%] bg-box-background rounded-md p-3 ml-0 mr-0 lg:ml-4 lg:mr-4 mb-4 lg:max-w-[288px]">
+        <div class="flex flex-col w-full max-w-[85%] bg-box-background rounded-md p-3 ml-0 mr-0 lg:ml-4 lg:mr-4 mb-4 lg:max-w-[288px] pb-10">
           <span class="text-xl text-[#57CDBE]">
             Working
           </span>
@@ -273,6 +282,13 @@ const showCompleteDescription = ref(false)
             class="text-sm mt-3 hover:text-slate-300/70 transition-all duration-200"
           >
             E-mail
+          </a>
+          <a
+            href="https://drive.google.com/file/d/1dNDv_Yx7C6suBzkcvwP42SduOVQq8-89/view?usp=sharing"
+            target="_blank"
+            class="text-sm mt-3 hover:text-slate-300/70 transition-all duration-200"
+          >
+            Meu curriculum
           </a>
         </div>
       </div>

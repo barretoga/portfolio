@@ -11,3 +11,7 @@
   font-family: 'Motiva Sans', sans-serif !important;
   font-weight: 1px;
 }
+
+textarea {
+  resize: none;
+}

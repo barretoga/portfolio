@@ -2,8 +2,10 @@
 import { computed, ref } from 'vue';
 import { badgeItems } from '~/static/badges';
 import { useUserStore } from '~/stores/user';
+import { notify } from '~/utils/notify';
 
 const showCompleteDescription = ref(false)
+const commentary = ref('')
 const userStore = useUserStore()
 const { execute: getUserRepositories, isLoading: isLoadingRepositories } = userStore.repositories()
 
@@ -12,6 +14,15 @@ getUserRepositories()
 const repositories = computed(() => {
   return userStore.$state.repositories
 })
+
+function sendEmail() {
+  const mailtoLink = `mailto:gabrielbarretogasparelo?subject=Comentário Do Portfólio&body=${commentary.value}`;
+
+  window.open(mailtoLink, '_blank');
+
+  commentary.value = ''
+  notify('Mensagem enviada com sucesso :)', 'success')
+}
 </script>
 
 <template>
@@ -22,7 +33,7 @@ const repositories = computed(() => {
       type="video/webm"
     />
     <div
-      class="flex flex-col bg-gradient-to-br overflow-x-hidden from-gradient-background via-gradient-background to-gradient-showcase-header-left rounded-lg max-w-[976px] w-full lg:w-[976px] z-[4] relative"
+      class="flex flex-col bg-gradient-to-br overflow-x-hidden mb-[5rem] from-gradient-background via-gradient-background to-gradient-showcase-header-left rounded-lg max-w-[976px] w-full lg:w-[976px] z-[4] relative"
     >
       <div class="flex flex-col lg:flex-row items-center lg:items-start py-8 px-6">
         <div class="relative w-full max-w-[200px]">
@@ -112,13 +123,13 @@ const repositories = computed(() => {
         <div class="w-full max-w-[90%] lg:mx-0 lg:max-w-[652px] lg:px-3 lg:ml-2 mb-4">
           <div class="bg-box-background rounded mx-2 lg:mx-0">
             <div class="flex bg-gradient-to-r from-gradient-showcase-header-left to-color-showcase-header rounded-t-md px-3 pt-1">
-              <h2 class="text-lg mb-2 mr-2">
+              <h2 class="text-lg mb-2 my-2">
                 Formação
               </h2>
               <a
                 href="https://fatecjahu.edu.br/cursos/gestao-da-tecnologia-da-informacao/"
                 target="_blank"
-                class="flex items-center -mt-2 hover:text-sky-300 transition-all duration-150"
+                class="flex items-center ml-2 hover:text-sky-300 transition-all duration-150"
               >
                 <Icon
                   icon="akar-icons:link-out"
@@ -132,13 +143,13 @@ const repositories = computed(() => {
           </div>
           <div class="bg-box-background lg:mx-0 mx-2 rounded mt-5">
             <div class="flex bg-gradient-to-r from-gradient-showcase-header-left to-color-showcase-header rounded-t-md px-3 pt-1">
-              <h2 class="text-lg mb-2 mr-2">
+              <h2 class="text-lg mb-2 my-2">
                 Projetos
               </h2>
               <a
                 href="https://github.com/barretoga?tab=repositories"
                 target="_blank"
-                class="flex items-center -mt-2 hover:text-sky-300 transition-all duration-150"
+                class="flex items-center ml-2 hover:text-sky-300 transition-all duration-150"
               >
                 <Icon
                   icon="akar-icons:link-out"
@@ -230,6 +241,23 @@ const repositories = computed(() => {
                 </a>
               </div>
             </div>
+          </div>
+          <div class="bg-box-background lg:mx-0 mx-2 rounded mt-5">
+            <div class="flex flex-col bg-gradient-to-r from-gradient-showcase-header-left to-color-showcase-header rounded-t-md px-3 pt-1">
+              <h2 class="text-lg mr-2 mt-2">
+                Comentários
+              </h2>
+              <span class="text-xs mt-2 mb-3">
+                Deixe um comentário, ao pressionar enter você poderá enviá-lo diretamente para minha caixa de e-mail :)
+              </span>
+            </div>
+            <textarea
+              v-model="commentary"
+              class="bg-box-background w-full h-[5rem] p-2 text-xs -mb-2"
+              autocomplete="false"
+              placeholder="Comentário"
+              @keydown.enter.prevent="sendEmail"
+            />
           </div>
         </div>
         <div class="flex flex-col w-full max-w-[85%] bg-box-background rounded-md p-3 ml-0 mr-0 lg:ml-4 lg:mr-4 mb-4 lg:max-w-[288px] pb-10">

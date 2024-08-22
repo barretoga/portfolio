@@ -6,7 +6,6 @@ export const http = axios.create({
 })
 
 http.interceptors.request.use((config) => {
-  console.log(config.baseURL)
   config.baseURL = config?.baseURL?.replace('http://', 'https://')
   config.url = `${config.baseURL}/${config.url}`
 

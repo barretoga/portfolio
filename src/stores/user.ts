@@ -12,7 +12,7 @@ const useUserStore = defineStore('User', {
   }),
   actions: {
     repositories() {
-      return useGet('repos', this.afterFetchRepositories())
+      return useGet('repos', this.afterFetchRepositories(), false)
     },
     afterFetchRepositories() {
       return (response: Array<Repository>) => {

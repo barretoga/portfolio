@@ -1,9 +1,11 @@
 <script setup lang="ts">
 import { computed, ref } from 'vue';
+import { useI18n } from 'vue-i18n';
 import { badgeItems } from '~/static/badges';
 import { useUserStore } from '~/stores/user';
 import { notify } from '~/utils/notify';
 
+const { t, locale } = useI18n()
 const showCompleteDescription = ref(false)
 const commentary = ref('')
 const userStore = useUserStore()
@@ -15,13 +17,17 @@ const repositories = computed(() => {
   return userStore.$state.repositories
 })
 
+function switchLanguage() {
+  locale.value = locale.value === 'en' ? 'pt' : 'en'
+}
+
 function sendEmail() {
-  const mailtoLink = `mailto:gabrielbarretogasparelo?subject=Comentário Do Portfólio&body=${commentary.value}`;
+  const mailtoLink = `mailto:gabrielbarretogasparelo?subject=${t('email_title')}&body=${commentary.value}`;
 
   window.open(mailtoLink, '_blank');
 
   commentary.value = ''
-  notify('Mensagem enviada com sucesso :)', 'success')
+  notify(t('send_message'), 'success')
 }
 </script>
 
@@ -40,12 +46,12 @@ function sendEmail() {
           <Image
             class="w-[164px] h-[164px] border-2 border-sky-300"
             src="gatinho.webp"
-            alt="Imagem de perfil"
+            :alt="t('alt_profile_image')"
           />
           <Image
             class="absolute -left-4 -top-4 w-[196px] h-[196px]"
             src="moldura.png"
-            alt="Moldura do perfil"
+            :alt="t('alt_profile_frame')"
           />
         </div>
         <div class="flex flex-col w-full max-w-[90%] lg:max-w-[450px] lg:pr-5 lg:pt-0 pt-5 text-sm">
@@ -59,10 +65,10 @@ function sendEmail() {
             <Image
               class="w-[16px] h-[11px] mt-1 mr-1"
               src="br.webp"
-              alt="Bandeira do Brasil"
+              :alt="t('alt_brazil_flag_icon')"
             />
             <span>
-              Bauru, São Paulo, Brazil
+              Bauru, São Paulo, {{ t('country') }}
             </span>
           </div>
           <div
@@ -75,10 +81,9 @@ function sendEmail() {
             <p
               class="mt-2"
             >
-              Olá, me chamo Gabriel Barreto, sou um Desenvolvedor Front-end e atualmente atuo pela Labi9 Tecnologia da informação como Front-end Tech Lead.
+              {{ t('about_first_part') }}
               <br><br>
-              Atuei em projetos que vão desde landing pages estáticas e backoffices a até aplicações WebApp que utilizam recursos como PWA e web sockets. Veja 
-              um pouco mais sobre minha trajetória através deste portfólio 🙇‍♂️
+              {{ t('about_second_part') }}
             </p>
           </div>
           <button
@@ -86,7 +91,7 @@ function sendEmail() {
             class="hover:text-sky-300 mt-2 font-medium text-left transition-all duration-200 ease-linear"
             @click="showCompleteDescription = !showCompleteDescription"
           >
-            {{ showCompleteDescription ? 'Ver menos informações' : 'Ver mais informações' }}
+            {{ showCompleteDescription ? t('see_less') : t('see_more') }}
           </button>
         </div>
         <div class="flex flex-row lg:justify-normal justify-between lg:flex-col w-full max-w-[90%] lg:max-w-[268px] col-span-2">
@@ -94,7 +99,7 @@ function sendEmail() {
             <h1
               class="mr-2 text-xl"
             >
-              Idade
+              {{ t('age') }}
             </h1>
             <span
               class="border-yellow-300 border-2 p-[2px] px-[4px] rounded-full"
@@ -113,7 +118,7 @@ function sendEmail() {
                 Vue
               </span>
               <span>
-                Mid Level/Pleno XP
+                {{ t('job_title') }}
               </span>
             </div>
           </div>
@@ -124,7 +129,7 @@ function sendEmail() {
           <div class="bg-box-background rounded mx-2 lg:mx-0">
             <div class="flex bg-gradient-to-r from-gradient-showcase-header-left to-color-showcase-header rounded-t-md px-3 pt-1">
               <h2 class="text-lg mb-2 my-2">
-                Formação
+                {{ t('graduation_title') }}
               </h2>
               <a
                 href="https://fatecjahu.edu.br/cursos/gestao-da-tecnologia-da-informacao/"
@@ -138,13 +143,13 @@ function sendEmail() {
               </a>
             </div>
             <p class="text-sm p-5">
-              Sou formado pela Faculdade de Tecnologia de São Paulo - FATEC Jahú em Gestão da Tecnologia da Informação (02/2020 - 12/2023).
+              {{ t('graduation_description') }}
             </p>
           </div>
           <div class="bg-box-background lg:mx-0 mx-2 rounded mt-5">
             <div class="flex bg-gradient-to-r from-gradient-showcase-header-left to-color-showcase-header rounded-t-md px-3 pt-1">
               <h2 class="text-lg mb-2 my-2">
-                Projetos
+                {{ t('projects') }}
               </h2>
               <a
                 href="https://github.com/barretoga?tab=repositories"
@@ -245,17 +250,17 @@ function sendEmail() {
           <div class="bg-box-background lg:mx-0 mx-2 rounded mt-5">
             <div class="flex flex-col bg-gradient-to-r from-gradient-showcase-header-left to-color-showcase-header rounded-t-md px-3 pt-1">
               <h2 class="text-lg mr-2 mt-2">
-                Comentários
+                {{ t('comment_title') }}
               </h2>
               <span class="text-xs mt-2 mb-3">
-                Deixe um comentário, ao pressionar enter você poderá enviá-lo diretamente para minha caixa de e-mail :)
+                {{ t('comment_description') }}
               </span>
             </div>
             <textarea
               v-model="commentary"
               class="bg-box-background w-full h-[5rem] p-2 text-xs -mb-2"
               autocomplete="false"
-              placeholder="Comentário"
+              :placeholder="t('comment_placeholder')"
               @keydown.enter.prevent="sendEmail"
             />
           </div>
@@ -266,7 +271,7 @@ function sendEmail() {
           </span>
           <div class="flex mt-10 items-end">
             <span class="text-sm">
-              Tecnologias
+              {{ t('technologies') }}
             </span>
             <span class="text-slate-400 ml-3 -mb-1 text-2xl">
               {{ badgeItems.length }}
@@ -316,8 +321,21 @@ function sendEmail() {
             target="_blank"
             class="text-sm mt-3 hover:text-slate-300/70 transition-all duration-200"
           >
-            Meu curriculum
+            {{ t('cv') }}
           </a>
+          <a
+            href="https://github.com/barretoga/my-vscode-config"
+            target="_blank"
+            class="text-sm mt-3 hover:text-slate-300/70 transition-all duration-200"
+          >
+            {{ t('vscode_configuration_item') }}
+          </a>
+          <button
+            @click="switchLanguage"
+            class="text-sm text-left mt-3 hover:text-slate-300/70 transition-all duration-200"
+          >
+            {{ t('change_language') }}
+          </button>
         </div>
       </div>
     </div>

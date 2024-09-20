@@ -1,5 +1,5 @@
 ## Portfolio
-My portfilio, made in vue and inspired by Steam UI, combining my two passions: programming and gaming.
+My portfolio, made in vue and inspired by Steam UI, combining my two passions: programming and gaming.
 
 ## 🧑‍💻 Tecnologias
 - Swiper.js

@@ -2,7 +2,7 @@ import { createI18n } from 'vue-i18n'
 
 const messages = {
   en: {
-    about_first_part: "Hello, my name is Gabriel Barreto. I am a Front-end Developer and currently work at Labi9 Tecnologia da Informação as a Front-end Tech Lead.",
+    about_first_part: "Hello, my name is Gabriel Barreto. I am a Front-end Developer and currently work at Teddy Open Finance as a Front-end Software Engineer.",
     about_second_part: "I have worked on projects ranging from static landing pages and back-office systems to WebApps using technologies like PWA and WebSockets. Explore my journey through this portfolio 🙇‍♂️",
     graduation_title: "Education",
     graduation_description: "I graduated from São Paulo State Technology College - FATEC Jahu in Information Technology Management (02/2020 - 12/2023).",
@@ -26,7 +26,7 @@ const messages = {
     change_language: "Mudar para Português"
   },
   pt: {
-    about_first_part: "Olá, me chamo Gabriel Barreto, sou um Desenvolvedor Front-end e atualmente atuo pela Labi9 Tecnologia da informação como Front-end Tech Lead.",
+    about_first_part: "Olá, me chamo Gabriel Barreto, sou um Desenvolvedor Front-end e atualmente atuo pela Teddy Open Finance como Engenheiro de Software Frontend.",
     about_second_part: "Atuei em projetos que vão desde landing pages estáticas e backoffices a até aplicações WebApp que utilizam recursos como PWA e web sockets. Veja um pouco mais sobre minha trajetória através deste portfólio 🙇‍♂️",
     graduation_title: "Formação",
     graduation_description: "Sou formado pela Faculdade de Tecnologia de São Paulo - FATEC Jahú em Gestão da Tecnologia da Informação (02/2020 - 12/2023).",

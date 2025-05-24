@@ -53,7 +53,7 @@ function getMyCurrentAge() {
       class="flex flex-col bg-gradient-to-br overflow-x-hidden mb-[5rem] from-gradient-background via-gradient-background to-gradient-showcase-header-left rounded-lg max-w-[976px] w-full lg:w-[976px] z-[4] relative"
     >
       <div class="flex flex-col lg:flex-row items-center lg:items-start py-8 px-6">
-        <div class="relative w-full max-w-[200px]">
+        <div class="relative items-center w-full max-w-[200px] sm:mr-0 -mr-5">
           <Image
             class="w-[164px] h-[164px] border-2 border-sky-300"
             src="gatinho.webp"

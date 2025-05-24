@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import { computed, ref } from 'vue';
-import { useI18n } from 'vue-i18n';
-import { badgeItems } from '~/static/badges';
-import { useUserStore } from '~/stores/user';
-import { notify } from '~/utils/notify';
+import { computed, ref } from 'vue'
+import { useI18n } from 'vue-i18n'
+import { badgeItems } from '~/static/badges'
+import { useUserStore } from '~/stores/user'
+import { notify } from '~/utils/notify'
 
 const { t, locale } = useI18n()
 const showCompleteDescription = ref(false)
@@ -22,12 +22,23 @@ function switchLanguage() {
 }
 
 function sendEmail() {
-  const mailtoLink = `mailto:gabrielbarretogasparelo?subject=${t('email_title')}&body=${commentary.value}`;
+  const mailtoLink = `mailto:gabrielbarretogasparelo?subject=${t('email_title')}&body=${commentary.value}`
 
-  window.open(mailtoLink, '_blank');
+  window.open(mailtoLink, '_blank')
 
   commentary.value = ''
   notify(t('send_message'), 'success')
+}
+
+function getMyCurrentAge() {
+  const today = new Date()
+  const birthDate = new Date(2000, 1, 6)
+  let age = today.getFullYear() - birthDate.getFullYear()
+  const m = today.getMonth() - birthDate.getMonth()
+  if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
+    age--
+  }
+  return age
 }
 </script>
 
@@ -57,32 +68,25 @@ function sendEmail() {
         <div class="flex flex-col w-full max-w-[90%] lg:max-w-[450px] lg:pr-5 lg:pt-0 pt-5 text-sm">
           <h1 class="text-2xl">barreto</h1>
           <div class="flex mb-5">
-            <span
-              class="pr-4"
-            >
-              gabriel
-            </span>
+            <span class="pr-4"> gabriel </span>
             <Image
               class="w-[16px] h-[11px] mt-1 mr-1"
               src="br.webp"
               :alt="t('alt_brazil_flag_icon')"
             />
-            <span>
-              Bauru, São Paulo, {{ t('country') }}
-            </span>
+            <span> Bauru, São Paulo, {{ t('country') }} </span>
           </div>
           <div
             :class="{
               'max-h-[50px] overflow-hidden line-clamp-2': !showCompleteDescription,
-              'max-h-[500px] overflow-visible transition-all duration-500 ease-linear': showCompleteDescription,
+              'max-h-[500px] overflow-visible transition-all duration-500 ease-linear':
+                showCompleteDescription
             }"
             class="text-gray-300"
-          >              
-            <p
-              class="mt-2"
-            >
+          >
+            <p class="mt-2">
               {{ t('about_first_part') }}
-              <br><br>
+              <br /><br />
               {{ t('about_second_part') }}
             </p>
           </div>
@@ -94,17 +98,15 @@ function sendEmail() {
             {{ showCompleteDescription ? t('see_less') : t('see_more') }}
           </button>
         </div>
-        <div class="flex flex-row lg:justify-normal justify-between lg:flex-col w-full max-w-[90%] lg:max-w-[268px] col-span-2">
+        <div
+          class="flex flex-row lg:justify-normal justify-between lg:flex-col w-full max-w-[90%] lg:max-w-[268px] col-span-2"
+        >
           <div class="flex items-center">
-            <h1
-              class="mr-2 text-xl"
-            >
+            <h1 class="mr-2 text-xl">
               {{ t('age') }}
             </h1>
-            <span
-              class="border-yellow-300 border-2 p-[2px] px-[4px] rounded-full"
-            >
-              24
+            <span class="border-yellow-300 border-2 p-[2px] px-[4px] rounded-full">
+              {{ getMyCurrentAge() }}
             </span>
           </div>
           <div class="flex mt-4 bg-box-background rounded p-3 py-2">
@@ -114,9 +116,7 @@ function sendEmail() {
               alt="Logo Vue"
             />
             <div class="flex flex-col ml-3 text-xs justify-center">
-              <span>
-                Vue
-              </span>
+              <span> Vue </span>
               <span>
                 {{ t('job_title') }}
               </span>
@@ -127,7 +127,9 @@ function sendEmail() {
       <div class="flex lg:flex-row flex-col items-center lg:items-start">
         <div class="w-full max-w-[90%] lg:mx-0 lg:max-w-[652px] lg:px-3 lg:ml-2 mb-4">
           <div class="bg-box-background rounded mx-2 lg:mx-0">
-            <div class="flex bg-gradient-to-r from-gradient-showcase-header-left to-color-showcase-header rounded-t-md px-3 pt-1">
+            <div
+              class="flex bg-gradient-to-r from-gradient-showcase-header-left to-color-showcase-header rounded-t-md px-3 pt-1"
+            >
               <h2 class="text-lg mb-2 my-2">
                 {{ t('graduation_title') }}
               </h2>
@@ -136,10 +138,7 @@ function sendEmail() {
                 target="_blank"
                 class="flex items-center ml-2 hover:text-sky-300 transition-all duration-150"
               >
-                <Icon
-                  icon="akar-icons:link-out"
-                  width="1em"
-                />
+                <Icon icon="akar-icons:link-out" width="1em" />
               </a>
             </div>
             <p class="text-sm p-5">
@@ -147,7 +146,9 @@ function sendEmail() {
             </p>
           </div>
           <div class="bg-box-background lg:mx-0 mx-2 rounded mt-5">
-            <div class="flex bg-gradient-to-r from-gradient-showcase-header-left to-color-showcase-header rounded-t-md px-3 pt-1">
+            <div
+              class="flex bg-gradient-to-r from-gradient-showcase-header-left to-color-showcase-header rounded-t-md px-3 pt-1"
+            >
               <h2 class="text-lg mb-2 my-2">
                 {{ t('projects') }}
               </h2>
@@ -156,10 +157,7 @@ function sendEmail() {
                 target="_blank"
                 class="flex items-center ml-2 hover:text-sky-300 transition-all duration-150"
               >
-                <Icon
-                  icon="akar-icons:link-out"
-                  width="1em"
-                />
+                <Icon icon="akar-icons:link-out" width="1em" />
               </a>
             </div>
             <div class="grid items-center lg:items-start lg:grid-cols-5 gap-1 lg:gap-2 p-2">
@@ -185,15 +183,11 @@ function sendEmail() {
                     src="commer.webp"
                     alt="Commer"
                   />
-                  <div class="lg:w-[116px] lg:items-start lg:pt-1 pt-0 flex flex-col items-center justify-center lg:justify-normal lg:h-[80px] w-[100%] h-[150px] top-0 bg-yellow-700/70 absolute opacity-0 hover:opacity-100 transition-all duration-200">
-                    <span class="text-xs text-center w-full font-semibold">
-                      Work in progress
-                    </span>
-                    <Icon
-                      class="mx-auto lg:mt-0 mt-2"
-                      icon="noto:construction"
-                      width="3em"
-                    />
+                  <div
+                    class="lg:w-[116px] lg:items-start lg:pt-1 pt-0 flex flex-col items-center justify-center lg:justify-normal lg:h-[80px] w-[100%] h-[150px] top-0 bg-yellow-700/70 absolute opacity-0 hover:opacity-100 transition-all duration-200"
+                  >
+                    <span class="text-xs text-center w-full font-semibold"> Work in progress </span>
+                    <Icon class="mx-auto lg:mt-0 mt-2" icon="noto:construction" width="3em" />
                   </div>
                 </a>
                 <a
@@ -206,22 +200,16 @@ function sendEmail() {
                     src="commer.webp"
                     alt="Commer API"
                   />
-                  <div class="absolute lg:w-[116px] lg:h-[80px] w-[100%] h-[150px] text-black/80 bg-gray-300/50 font-bold text-xl top-0">
-                    <Icon
-                      class="mx-auto lg:mt-1 mt-9"
-                      icon="tabler:database-cog"
-                      width="3em"
-                    />
+                  <div
+                    class="absolute lg:w-[116px] lg:h-[80px] w-[100%] h-[150px] text-black/80 bg-gray-300/50 font-bold text-xl top-0"
+                  >
+                    <Icon class="mx-auto lg:mt-1 mt-9" icon="tabler:database-cog" width="3em" />
                   </div>
-                  <div class="lg:w-[116px] lg:items-start lg:pt-1 pt-0 flex flex-col items-center justify-center lg:justify-normal lg:h-[80px] w-[100%] h-[150px] top-0 bg-yellow-700/70 absolute opacity-0 hover:opacity-100 transition-all duration-200">
-                    <span class="text-xs text-center w-full font-semibold">
-                      Work in progress
-                    </span>
-                    <Icon
-                      class="mx-auto lg:mt-0 mt-5"
-                      icon="noto:construction"
-                      width="3em"
-                    />
+                  <div
+                    class="lg:w-[116px] lg:items-start lg:pt-1 pt-0 flex flex-col items-center justify-center lg:justify-normal lg:h-[80px] w-[100%] h-[150px] top-0 bg-yellow-700/70 absolute opacity-0 hover:opacity-100 transition-all duration-200"
+                  >
+                    <span class="text-xs text-center w-full font-semibold"> Work in progress </span>
+                    <Icon class="mx-auto lg:mt-0 mt-5" icon="noto:construction" width="3em" />
                   </div>
                 </a>
                 <a
@@ -240,15 +228,15 @@ function sendEmail() {
                   href="https://github.com/barretoga?tab=repositories"
                   target="_blank"
                 >
-                  <span class="mx-auto">
-                    +{{ repositories.length - 4 }}
-                  </span>
+                  <span class="mx-auto"> +{{ repositories.length - 4 }} </span>
                 </a>
               </div>
             </div>
           </div>
           <div class="bg-box-background lg:mx-0 mx-2 rounded mt-5">
-            <div class="flex flex-col bg-gradient-to-r from-gradient-showcase-header-left to-color-showcase-header rounded-t-md px-3 pt-1">
+            <div
+              class="flex flex-col bg-gradient-to-r from-gradient-showcase-header-left to-color-showcase-header rounded-t-md px-3 pt-1"
+            >
               <h2 class="text-lg mr-2 mt-2">
                 {{ t('comment_title') }}
               </h2>
@@ -259,16 +247,16 @@ function sendEmail() {
             <textarea
               v-model="commentary"
               class="bg-box-background w-full h-[5rem] p-2 text-xs -mb-2"
-              autocomplete="false"
+              autocomplete="off"
               :placeholder="t('comment_placeholder')"
               @keydown.enter.prevent="sendEmail"
             />
           </div>
         </div>
-        <div class="flex flex-col w-full max-w-[85%] bg-box-background rounded-md p-3 ml-0 mr-0 lg:ml-4 lg:mr-4 mb-4 lg:max-w-[288px] pb-10">
-          <span class="text-xl text-[#57CDBE]">
-            Working
-          </span>
+        <div
+          class="flex flex-col w-full max-w-[85%] bg-box-background rounded-md p-3 ml-0 mr-0 lg:ml-4 lg:mr-4 mb-4 lg:max-w-[288px] pb-10"
+        >
+          <span class="text-xl text-[#57CDBE]"> Working </span>
           <div class="flex mt-10 items-end">
             <span class="text-sm">
               {{ t('technologies') }}
@@ -283,7 +271,7 @@ function sendEmail() {
             :slides-per-view="4"
             :autoplay="{
               delay: 1000,
-              disableOnInteraction: false,
+              disableOnInteraction: false
             }"
             class="h-[70px] w-full mt-2"
           >
@@ -296,7 +284,7 @@ function sendEmail() {
             </template>
           </Swiper>
           <a
-          href="https://github.com/barretoga"
+            href="https://github.com/barretoga"
             target="_blank"
             class="text-sm mt-10 hover:text-slate-300/70 transition-all duration-200"
           >

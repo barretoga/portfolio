@@ -56,7 +56,7 @@ function getMyCurrentAge() {
         <div class="relative items-center w-full max-w-[200px] sm:mr-0 -mr-5">
           <Image
             class="w-[164px] h-[164px] border-2 border-sky-300"
-            src="gatinho.webp"
+            src="doggo.webp"
             :alt="t('alt_profile_image')"
           />
           <Image

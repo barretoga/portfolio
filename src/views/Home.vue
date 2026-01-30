@@ -338,7 +338,7 @@ function getMyCurrentAge() {
               <Image src="spotify-icon.svg" width="20px" height="12px" alt="Spotify Logo" />
               <span class="text-xl font-bold text-[#1ED760]"> Spotify </span>
             </div>
-            <Skeleton v-if="isLoadingSpotify" class="min-w-[5rem] min-h-[14rem]" />
+            <Skeleton v-if="isLoadingSpotify" />
             <div v-else-if="spotifyStore.isPlaying" class="flex flex-col items-center gap-2 mt-2">
               <a :href="spotifyStore.spotifyUrl" target="_blank" class="group relative">
                 <img

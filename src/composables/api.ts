@@ -31,15 +31,18 @@ const axiosOptions = function<T> (
   }
 }
 
+import type { AxiosInstance } from 'axios'
+
 export function useGet<T>(
   url: string,
   callback?: (response: T) => T,
   showToast = true,
+  axiosInstance: AxiosInstance = http
 ) {
   const response = useAxios(
     url,
     { method: 'GET' },
-    http,
+    axiosInstance,
     axiosOptions<T>(showToast, callback),
   )
 

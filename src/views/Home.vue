@@ -3,15 +3,19 @@ import { computed, ref } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { badgeItems } from '~/static/badges'
 import { useUserStore } from '~/stores/user'
+import { useSpotifyStore } from '~/stores/spotify'
 import { notify } from '~/utils/notify'
 
 const { t, locale } = useI18n()
 const showCompleteDescription = ref(false)
 const commentary = ref('')
 const userStore = useUserStore()
+const spotifyStore = useSpotifyStore()
 const { execute: getUserRepositories, isLoading: isLoadingRepositories } = userStore.repositories()
+const { execute: getCurrentTrack, isLoading: isLoadingSpotify } = spotifyStore.fetchCurrentTrack()
 
 getUserRepositories()
+getCurrentTrack()
 
 const repositories = computed(() => {
   return userStore.$state.repositories
@@ -253,77 +257,117 @@ function getMyCurrentAge() {
             />
           </div>
         </div>
-        <div
-          class="flex flex-col w-full max-w-[85%] bg-box-background rounded-md p-3 ml-0 mr-0 lg:ml-4 lg:mr-4 mb-4 lg:max-w-[288px] pb-10"
-        >
-          <span class="text-xl text-[#57CDBE]"> Working </span>
-          <div class="flex mt-10 items-end">
-            <span class="text-sm">
-              {{ t('technologies') }}
-            </span>
-            <span class="text-slate-400 ml-3 -mb-1 text-2xl">
-              {{ badgeItems.length }}
-            </span>
+        <div class="flex flex-col items-center max-w-[85%]">
+          <div
+            class="flex flex-col w-full bg-box-background rounded-md p-3 ml-0 mr-0 lg:ml-4 lg:mr-4 mb-4 lg:max-w-[288px] pb-10"
+          >
+            <span class="text-xl text-[#57CDBE]"> Working </span>
+            <div class="flex mt-10 items-end">
+              <span class="text-sm">
+                {{ t('technologies') }}
+              </span>
+              <span class="text-slate-400 ml-3 -mb-1 text-2xl">
+                {{ badgeItems.length }}
+              </span>
+            </div>
+            <Swiper
+              :items="badgeItems"
+              :loop="true"
+              :slides-per-view="4"
+              :autoplay="{
+                delay: 1000,
+                disableOnInteraction: false
+              }"
+              class="h-[70px] w-full mt-2"
+            >
+              <template #default="{ item }">
+                <Image
+                  :src="item.image_path"
+                  :alt="item.name"
+                  class="w-[54px] h-[54px] object-cover p-1 rounded-lg"
+                />
+              </template>
+            </Swiper>
+            <a
+              href="https://github.com/barretoga"
+              target="_blank"
+              class="text-sm mt-10 hover:text-slate-300/70 transition-all duration-200"
+            >
+              Github
+            </a>
+            <a
+              href="https://www.linkedin.com/in/gabrielbarretogasparelo/"
+              target="_blank"
+              class="text-sm mt-3 hover:text-slate-300/70 transition-all duration-200"
+            >
+              Linkedin
+            </a>
+            <a
+              href="mailto:gabrielbarretogasparelo@gmail.com.br?subject=Proposta de emprego&body=Olá Gabriel Barreto!"
+              target="_blank"
+              class="text-sm mt-3 hover:text-slate-300/70 transition-all duration-200"
+            >
+              E-mail
+            </a>
+            <a
+              href="https://drive.google.com/file/d/1dNDv_Yx7C6suBzkcvwP42SduOVQq8-89/view?usp=sharing"
+              target="_blank"
+              class="text-sm mt-3 hover:text-slate-300/70 transition-all duration-200"
+            >
+              {{ t('cv') }}
+            </a>
+            <a
+              href="https://github.com/barretoga/my-vscode-config"
+              target="_blank"
+              class="text-sm mt-3 hover:text-slate-300/70 transition-all duration-200"
+            >
+              {{ t('vscode_configuration_item') }}
+            </a>
+            <button
+              @click="switchLanguage"
+              class="text-sm text-left mt-3 hover:text-slate-300/70 transition-all duration-200"
+            >
+              {{ t('change_language') }}
+            </button>
           </div>
-          <Swiper
-            :items="badgeItems"
-            :loop="true"
-            :slides-per-view="4"
-            :autoplay="{
-              delay: 1000,
-              disableOnInteraction: false
-            }"
-            class="h-[70px] w-full mt-2"
+          <div
+            class="flex flex-col w-full gap-4 h-full min-h-[300px] bg-box-background rounded-md p-3 ml-0 mr-0 lg:ml-4 lg:mr-4 mb-4 lg:max-w-[288px] pb-10"
           >
-            <template #default="{ item }">
-              <Image
-                :src="item.image_path"
-                :alt="item.name"
-                class="w-[54px] h-[54px] object-cover p-1 rounded-lg"
-              />
-            </template>
-          </Swiper>
-          <a
-            href="https://github.com/barretoga"
-            target="_blank"
-            class="text-sm mt-10 hover:text-slate-300/70 transition-all duration-200"
-          >
-            Github
-          </a>
-          <a
-            href="https://www.linkedin.com/in/gabrielbarretogasparelo/"
-            target="_blank"
-            class="text-sm mt-3 hover:text-slate-300/70 transition-all duration-200"
-          >
-            Linkedin
-          </a>
-          <a
-            href="mailto:gabrielbarretogasparelo@gmail.com.br?subject=Proposta de emprego&body=Olá Gabriel Barreto!"
-            target="_blank"
-            class="text-sm mt-3 hover:text-slate-300/70 transition-all duration-200"
-          >
-            E-mail
-          </a>
-          <a
-            href="https://drive.google.com/file/d/1dNDv_Yx7C6suBzkcvwP42SduOVQq8-89/view?usp=sharing"
-            target="_blank"
-            class="text-sm mt-3 hover:text-slate-300/70 transition-all duration-200"
-          >
-            {{ t('cv') }}
-          </a>
-          <a
-            href="https://github.com/barretoga/my-vscode-config"
-            target="_blank"
-            class="text-sm mt-3 hover:text-slate-300/70 transition-all duration-200"
-          >
-            {{ t('vscode_configuration_item') }}
-          </a>
-          <button
-            @click="switchLanguage"
-            class="text-sm text-left mt-3 hover:text-slate-300/70 transition-all duration-200"
-          >
-            {{ t('change_language') }}
-          </button>
+            <div class="flex justify-start gap-1">
+              <Image src="spotify-icon.svg" width="20px" height="12px" alt="Spotify Logo" />
+              <span class="text-xl font-bold text-[#1ED760]"> Spotify </span>
+            </div>
+            <Skeleton v-if="isLoadingSpotify" class="min-w-[5rem] min-h-[14rem]" />
+            <div v-else-if="spotifyStore.isPlaying" class="flex flex-col items-center gap-2 mt-2">
+              <a :href="spotifyStore.spotifyUrl" target="_blank" class="group relative">
+                <img
+                  :src="spotifyStore.albumImage"
+                  :alt="spotifyStore.trackName"
+                  class="w-32 h-32 rounded-md shadow-lg group-hover:scale-105 transition-transform duration-200"
+                />
+                <div
+                  class="absolute inset-0 flex items-center justify-center bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-200 rounded-md"
+                >
+                  <Icon icon="akar-icons:link-out" class="text-white w-8 h-8" />
+                </div>
+              </a>
+              <div class="flex flex-col items-center text-center">
+                <a
+                  :href="spotifyStore.spotifyUrl"
+                  target="_blank"
+                  class="font-bold text-sm hover:underline hover:text-[#1ED760] transition-colors"
+                >
+                  {{ spotifyStore.trackName }}
+                </a>
+                <span class="text-xs text-gray-400">
+                  {{ spotifyStore.artistName }}
+                </span>
+              </div>
+            </div>
+            <div v-else class="flex flex-col items-center justify-center h-full mt-4 text-gray-500">
+              <span class="text-sm">Not playing anything...</span>
+            </div>
+          </div>
         </div>
       </div>
     </div>

@@ -16,7 +16,6 @@ const useUserStore = defineStore('User', {
     },
     afterFetchRepositories() {
       return (response: Array<Repository>) => {
-
         this.$state.repositories = response
 
         return response

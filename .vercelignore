@@ -1,0 +1,14 @@
+# Testes
+e2e/
+playwright-report/
+test-results/
+*.spec.ts
+*.test.ts
+
+# Configurações de desenvolvimento
+.vscode/
+.idea/
+*.log
+
+# Certificados locais
+.certs/

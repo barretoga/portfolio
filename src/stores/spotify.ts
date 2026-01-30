@@ -1,35 +1,43 @@
 import { defineStore } from 'pinia'
-import { useGet } from '~/composables/api'
-import { spotifyHttp } from '~/composables/spotifyHttp'
-import type { CurrentTrack } from '~/models/Spotify'
+import { getNowPlaying, type SpotifyNowPlaying } from '~/services/spotifyAuth'
 
 interface State {
-  currentTrack: CurrentTrack
+  currentTrack: SpotifyNowPlaying | null
+  isLoading: boolean
+  error: string | null
 }
 
 const useSpotifyStore = defineStore('Spotify', {
   state: (): State => ({
-    currentTrack: {} as CurrentTrack
+    currentTrack: null,
+    isLoading: false,
+    error: null
   }),
   actions: {
-    fetchCurrentTrack() {
-      return useGet('me/player/currently-playing', this.afterFetchCurrentTrack(), false, spotifyHttp)
-    },
-    afterFetchCurrentTrack() {
-      return (response: CurrentTrack) => {
-        this.$state.currentTrack = response
-
+    async fetchCurrentTrack() {
+      this.isLoading = true
+      this.error = null
+      
+      try {
+        const response = await getNowPlaying()
+        this.currentTrack = response
         return response
+      } catch (error) {
+        this.error = error instanceof Error ? error.message : 'Failed to fetch current track'
+        console.error('Error fetching current track:', error)
+        throw error
+      } finally {
+        this.isLoading = false
       }
     }
   },
   getters: {
-    isPlaying: (state) => state.currentTrack?.is_playing || false,
-    artistName: (state) =>
-      state.currentTrack?.item?.artists?.map((artist) => artist.name).join(', ') || '',
-    trackName: (state) => state.currentTrack?.item?.name || '',
-    albumImage: (state) => state.currentTrack?.item?.album?.images?.[0]?.url || '',
-    spotifyUrl: (state) => state.currentTrack?.item?.external_urls?.spotify || ''
+    isPlaying: (state) => state.currentTrack?.isPlaying || false,
+    artistName: (state) => state.currentTrack?.artist || '',
+    trackName: (state) => state.currentTrack?.title || '',
+    albumImage: (state) => state.currentTrack?.albumImageUrl || '',
+    spotifyUrl: (state) => state.currentTrack?.songUrl || '',
+    albumName: (state) => state.currentTrack?.album || ''
   }
 })
 

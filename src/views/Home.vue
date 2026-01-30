@@ -12,10 +12,11 @@ const commentary = ref('')
 const userStore = useUserStore()
 const spotifyStore = useSpotifyStore()
 const { execute: getUserRepositories, isLoading: isLoadingRepositories } = userStore.repositories()
-const { execute: getCurrentTrack, isLoading: isLoadingSpotify } = spotifyStore.fetchCurrentTrack()
 
 getUserRepositories()
-getCurrentTrack()
+spotifyStore.fetchCurrentTrack()
+
+const isLoadingSpotify = computed(() => spotifyStore.isLoading)
 
 const repositories = computed(() => {
   return userStore.$state.repositories

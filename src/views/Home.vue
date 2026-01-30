@@ -339,11 +339,23 @@ function getMyCurrentAge() {
               <span class="text-xl font-bold text-[#1ED760]"> Spotify </span>
             </div>
             <Skeleton v-if="isLoadingSpotify" />
-            <div v-else-if="spotifyStore.isPlaying" class="flex flex-col items-center gap-2 mt-2">
+            <div v-else-if="spotifyStore.hasTrackData" class="flex flex-col items-center gap-2 mt-2">
+              <div class="flex items-center gap-2 mb-1">
+                <div 
+                  :class="spotifyStore.isPlaying ? 'bg-[#1ED760]' : 'bg-gray-500'"
+                  :title="spotifyStore.isPlaying ? 'Playing now' : 'Last played'"
+                  class="w-2 h-2 rounded-full"
+                ></div>
+                <span class="text-xs text-gray-400">
+                  {{ spotifyStore.isPlaying ? 'Now Playing' : 'Last Played' }}
+                </span>
+              </div>
+              
               <a :href="spotifyStore.spotifyUrl" target="_blank" class="group relative">
                 <img
                   :src="spotifyStore.albumImage"
                   :alt="spotifyStore.trackName"
+                  :class="{ 'opacity-75': !spotifyStore.isPlaying }"
                   class="w-32 h-32 rounded-md shadow-lg group-hover:scale-105 transition-transform duration-200"
                 />
                 <div

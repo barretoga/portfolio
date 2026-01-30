@@ -13,13 +13,32 @@ export default async function handler(
   const CLIENT_SECRET = process.env.SPOTIFY_CLIENT_SECRET
   const REFRESH_TOKEN = process.env.SPOTIFY_REFRESH_TOKEN
 
+  // Log para debug (não expõe valores sensíveis)
+  console.log('Environment check:', {
+    hasClientId: !!CLIENT_ID,
+    hasClientSecret: !!CLIENT_SECRET,
+    hasRefreshToken: !!REFRESH_TOKEN,
+    clientIdLength: CLIENT_ID?.length,
+    clientSecretLength: CLIENT_SECRET?.length,
+    refreshTokenLength: REFRESH_TOKEN?.length
+  })
+
   if (!CLIENT_ID || !CLIENT_SECRET || !REFRESH_TOKEN) {
-    return res.status(500).json({ error: 'Missing Spotify credentials' })
+    return res.status(500).json({ 
+      error: 'Missing Spotify credentials',
+      debug: {
+        hasClientId: !!CLIENT_ID,
+        hasClientSecret: !!CLIENT_SECRET,
+        hasRefreshToken: !!REFRESH_TOKEN
+      }
+    })
   }
 
   try {
     // 1. Obter access token usando refresh token
     const basicAuth = Buffer.from(`${CLIENT_ID}:${CLIENT_SECRET}`).toString('base64')
+    
+    console.log('Requesting access token...')
     
     const tokenResponse = await fetch('https://accounts.spotify.com/api/token', {
       method: 'POST',
@@ -36,12 +55,18 @@ export default async function handler(
     if (!tokenResponse.ok) {
       const error = await tokenResponse.json()
       console.error('Token error:', error)
-      return res.status(tokenResponse.status).json({ error: 'Failed to get access token' })
+      return res.status(tokenResponse.status).json({ 
+        error: 'Failed to get access token',
+        details: error
+      })
     }
 
     const { access_token } = await tokenResponse.json()
+    console.log('Access token obtained successfully')
 
     // 2. Buscar música atual
+    console.log('Fetching now playing...')
+    
     const nowPlayingResponse = await fetch(
       'https://api.spotify.com/v1/me/player/currently-playing',
       {
@@ -53,16 +78,21 @@ export default async function handler(
 
     // Se não estiver tocando nada, retorna 204
     if (nowPlayingResponse.status === 204) {
+      console.log('No track currently playing')
       return res.status(200).json({ isPlaying: false })
     }
 
     if (!nowPlayingResponse.ok) {
       const error = await nowPlayingResponse.json()
       console.error('Now playing error:', error)
-      return res.status(nowPlayingResponse.status).json({ error: 'Failed to get now playing' })
+      return res.status(nowPlayingResponse.status).json({ 
+        error: 'Failed to get now playing',
+        details: error
+      })
     }
 
     const data = await nowPlayingResponse.json()
+    console.log('Now playing data retrieved successfully')
 
     // 3. Retornar dados formatados
     return res.status(200).json({
@@ -79,6 +109,9 @@ export default async function handler(
 
   } catch (error) {
     console.error('Unexpected error:', error)
-    return res.status(500).json({ error: 'Internal server error' })
+    return res.status(500).json({ 
+      error: 'Internal server error',
+      message: error instanceof Error ? error.message : 'Unknown error'
+    })
   }
 }

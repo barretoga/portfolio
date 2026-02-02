@@ -240,7 +240,7 @@ function getMyCurrentAge() {
           </div>
           <div class="bg-box-background lg:mx-0 mx-2 rounded mt-5">
             <div
-              class="flex flex-col bg-gradient-to-r from-gradient-showcase-header-left to-color-showcase-header rounded-t-md px-3 pt-1"
+              class="flex flex-col bg-gradient-to-r from-gradient-showcase-header-left to-color-showcase-header rounded-md px-3 pt-1"
             >
               <h2 class="text-lg mr-2 mt-2">
                 {{ t('comment_title') }}
@@ -251,7 +251,7 @@ function getMyCurrentAge() {
             </div>
             <textarea
               v-model="commentary"
-              class="bg-box-background w-full h-[5rem] p-2 text-xs -mb-2"
+              class="bg-box-background w-full h-[7.7rem] p-2 text-xs -mb-2"
               autocomplete="off"
               :placeholder="t('comment_placeholder')"
               @keydown.enter.prevent="sendEmail"

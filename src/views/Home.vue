@@ -180,7 +180,7 @@ function getMyCurrentAge() {
               <div class="flex flex-col lg:items-start items-center w-full col-span-1 gap-y-1">
                 <a
                   class="lg:w-[116px] lg:h-[80px] w-[100%] h-[150px] hover:border-gray-50 border border-transparent relative transition-all duration-200 overflow-hidden"
-                  href="https://commer-application.netlify.app/"
+                  href="https://becommer.netlify.app/"
                   target="_blank"
                 >
                   <Image

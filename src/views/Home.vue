@@ -311,7 +311,7 @@ function getMyCurrentAge() {
               E-mail
             </a>
             <a
-              href="https://drive.google.com/file/d/1dNDv_Yx7C6suBzkcvwP42SduOVQq8-89/view?usp=sharing"
+              href="https://drive.google.com/file/d/1Rn9_muKC0eP53pj92Cm_xBzTag5mBEtc/view?usp=sharing"
               target="_blank"
               class="text-sm mt-3 hover:text-slate-300/70 transition-all duration-200"
             >
@@ -339,9 +339,12 @@ function getMyCurrentAge() {
               <span class="text-xl font-bold text-[#1ED760]"> Spotify </span>
             </div>
             <Skeleton v-if="isLoadingSpotify" />
-            <div v-else-if="spotifyStore.hasTrackData" class="flex flex-col items-center gap-2 mt-2">
+            <div
+              v-else-if="spotifyStore.hasTrackData"
+              class="flex flex-col items-center gap-2 mt-2"
+            >
               <div class="flex items-center gap-2 mb-1">
-                <div 
+                <div
                   :class="spotifyStore.isPlaying ? 'bg-[#1ED760]' : 'bg-gray-500'"
                   :title="spotifyStore.isPlaying ? 'Playing now' : 'Last played'"
                   class="w-2 h-2 rounded-full"
@@ -350,7 +353,7 @@ function getMyCurrentAge() {
                   {{ spotifyStore.isPlaying ? 'Now Playing' : 'Last Played' }}
                 </span>
               </div>
-              
+
               <a :href="spotifyStore.spotifyUrl" target="_blank" class="group relative">
                 <img
                   :src="spotifyStore.albumImage"
